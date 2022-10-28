@@ -1,17 +1,52 @@
 import $ from 'jquery'
 
 import {
+  deleteTask,
   indexTasks,
   postTask,
+  markTaskComplete,
+  markTaskActive,
 } from "./requests.js";
 
 indexTasks(function (response) {
   var htmlString = response.tasks.map(function (task) {
-    return "<div class='col-12 mb-3 p-2 border rounded task' data-id='" + task.id + "'> \
-    " + task.content + "\
-    </div>";
+    return "<div class='d-flex col-12 mb-3 p-2 border rounded task justify-content-between' data-id='" + task.id + "'>" + "<input type='checkbox' class='mark-complete mr-2' data-id='" + task.id + "'" + (task.completed ? "checked" : "" ) + ">"
+     + "<p class='d-inline px-2 my-2 text-wrap task-content'>" + task.content + "</p>" + "<button class='delete float-right btn-outline-danger btn-sm' data-id='" + task.id + "'>Delete</button>" +
+    "</div>";
   })
 
   $('#tasks').html(htmlString);
 })
+
+var displayAllTasks = function (response) {
+  var htmlString = response.tasks.map(function(task) {
+    return "<div class='d-flex col-12 mb-3 p-2 border rounded task justify-content-between' data-id='" + task.id + "'>" + "<input type='checkbox' class='mark-complete mr-2' data-id='" + task.id + "'" + (task.completed ? "checked" : "" ) + ">"
+     + "<p class='d-inline px-2 my-2 text-wrap task-content'>" + task.content + "</p>" + "<button class='delete float-right btn-outline-danger btn-sm' data-id='" + task.id + "'>Delete</button>" +
+    "</div>";
+  })
+
+  $('#tasks').html(htmlString);
+}
+
+$(document).on('click', '.addTask', function(event) {
+  event.preventDefault();
+
+  var input = $('#task-input').val();
+  postTask(input);
+  indexTasks(displayAllTasks);
+  $('#task-input').val('')
+})
+
+$(document).on('click', '.delete', function() {
+  deleteTask($(this).data('id'), setTimeout(function() { indexTasks(displayAllTasks); }, 100 ));
+});
+
+$(document).on('change', '.mark-complete', function() {
+  if (this.checked) {
+    markTaskComplete($(this).data('id'));
+  } else {
+    markTaskActive($(this).data('id'));
+  }
+})
+
 
