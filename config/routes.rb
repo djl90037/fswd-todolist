@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'static_pages#index'
+  
   namespace :api do
 
     resources :users, only: [:create]
@@ -12,4 +14,6 @@ Rails.application.routes.draw do
     delete 'tasks/:id'                => 'tasks#destroy'
   end
   
+  get '*path' => redirect('/')
+
 end
