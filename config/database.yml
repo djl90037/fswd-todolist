@@ -24,6 +24,6 @@ production:
   <<: *default
   adapter: postgresql
   encoding: unicode
-  database: to_do_list_fs
+  database: fswd-todolist
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   url: <%= ENV['DATABASE_URL'] %>
