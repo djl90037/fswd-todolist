@@ -42,12 +42,14 @@ $(document).on('click', '.delete', function () {
   deleteTask($(this).data('id'), setTimeout(function () { indexTasks(displayAllTasks); }, 100));
 });
 
-$(document).on('click', '.mark-complete', '.checked', function () {
+$(document).on('change', '.mark-complete', function () {
   if (this.checked) {
     markTaskComplete($(this).data('id'));
+    $(this).addClass('checked')
   } else {
     markTaskActive($(this).data('id'));
+    $(this).removeClass('checked')
   }
-  indexTasks(displayAllTasks);
+  indexTasks(displayAllTasks)
 })
 

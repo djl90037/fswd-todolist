@@ -54,6 +54,7 @@ export var markTaskComplete = function (id, successCB, errorCB) {
   }
 
   $.ajax(request);
+  // indexTasks()
 }
 
 export var markTaskActive = function (id, successCB, errorCB) {
@@ -65,4 +66,6 @@ export var markTaskActive = function (id, successCB, errorCB) {
   }
 
   $.ajax(request);
+  // indexTasks()
+  
 }
