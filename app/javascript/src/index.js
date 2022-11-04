@@ -47,12 +47,12 @@ $(document).on('change', '.mark-complete', function () {
     markTaskComplete($(this).data('id'), function () {
       indexTasks(displayAllTasks);
     });
-    $(this).addClass('checked')
+    // $(this).addClass('checked')
   } else {
     markTaskActive($(this).data('id'), function () {
       indexTasks(displayAllTasks);
     });
-    $(this).removeClass('checked')
+    // $(this).removeClass('checked')
   }
 })
 

@@ -14,7 +14,7 @@ export var indexTasks = function (successCB, errorCB) {
     error: errorCB
   }
 
-  console.log(request)
+  // console.log(request)
   $.ajax(request)
 };
 
@@ -64,7 +64,7 @@ export var markTaskActive = function (id, successCB, errorCB) {
     success: successCB,
     error: errorCB
   }
-
+  
   $.ajax(request);
   // indexTasks()
   
