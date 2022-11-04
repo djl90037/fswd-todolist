@@ -54,5 +54,6 @@ $(document).on('click', '.mark-complete', function () {
     });
     // $(this).removeClass('checked')
   }
+  indexTasks(displayAllTasks)
 })
 
