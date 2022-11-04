@@ -44,12 +44,15 @@ $(document).on('click', '.delete', function () {
 
 $(document).on('change', '.mark-complete', function () {
   if (this.checked) {
-    markTaskComplete($(this).data('id'));
+    markTaskComplete($(this).data('id'), function () {
+      indexTasks(displayAllTasks);
+    });
     $(this).addClass('checked')
   } else {
-    markTaskActive($(this).data('id'));
+    markTaskActive($(this).data('id'), function () {
+      indexTasks(displayAllTasks);
+    });
     $(this).removeClass('checked')
   }
-  indexTasks(displayAllTasks)
 })
 
