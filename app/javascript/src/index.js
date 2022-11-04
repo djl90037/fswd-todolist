@@ -47,13 +47,11 @@ $(document).on('click', '.mark-complete', function () {
     markTaskComplete($(this).data('id'), function () {
       indexTasks(displayAllTasks);
     });
-    // $(this).addClass('checked')
   } else {
     markTaskActive($(this).data('id'), function () {
       indexTasks(displayAllTasks);
     });
-    // $(this).removeClass('checked')
   }
-  indexTasks(displayAllTasks)
+  
 })
 
