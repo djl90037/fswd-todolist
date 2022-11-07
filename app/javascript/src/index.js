@@ -10,8 +10,9 @@ import {
 
 
 indexTasks(function (response) {
+  console.log(response.tasks)
   var htmlString = response.tasks
-    .sort((a, b) => { a - b })
+    .sort((task1, task2) => { task1.id - task2.id })
     .map(function (task) {
     return "<div id='task' class='d-flex col-12 mb-3 p-2 border rounded task justify-content-between " + (task.completed ? "checked'" : "'") + "data-id='" + task.id + "'>" + "<input id='checkbox' type='checkbox' class='mark-complete mr-2' data-id='" + task.id + "'" + (task.completed ? "checked" : "") + ">"
       + "<p class='d-inline px-2 my-2 text-wrap task-content'>" + task.content + "</p>" + "<button class='delete float-right btn-outline-danger btn-sm' data-id='" + task.id + "'>Delete</button>" +
